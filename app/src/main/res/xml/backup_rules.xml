@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude from backup -->
+    <exclude domain="sharedpref" path="SGDH_Session.xml"/>
+    <exclude domain="database" path="sgdh.db"/>
+    <exclude domain="file" path="no_backup/"/>
+    <exclude domain="file" path="cache/"/>
+
+    <!-- Include specific files -->
+    <include domain="sharedpref" path="other_prefs.xml"/>
+</full-backup-content>

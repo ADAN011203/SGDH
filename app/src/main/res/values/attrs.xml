@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Define el atributo colorBackground que está faltando -->
+    <attr name="colorBackground" format="color|reference" />
+
+    <!-- Atributos comunes de Material Design 3 -->
+    <attr name="colorOnBackground" format="color|reference" />
+    <attr name="colorSurface" format="color|reference" />
+    <attr name="colorOnSurface" format="color|reference" />
+    <attr name="colorSurfaceVariant" format="color|reference" />
+    <attr name="colorOnSurfaceVariant" format="color|reference" />
+    <attr name="colorOutline" format="color|reference" />
+    <attr name="colorOnPrimary" format="color|reference" />
+    <attr name="colorOnSecondary" format="color|reference" />
+
+    <!-- Para Material Design 3 -->
+    <attr name="materialThemeOverlay" format="reference" />
+</resources>

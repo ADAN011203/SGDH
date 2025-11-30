@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude from cloud backup -->
+        <exclude domain="sharedpref" path="SGDH_Session.xml"/>
+        <exclude domain="database" path="sgdh.db"/>
+    </cloud-backup>
+    <device-transfer>
+        <!-- Include for device transfer -->
+        <include domain="sharedpref" path="."/>
+        <include domain="database" path="."/>
+        <include domain="file" path="."/>
+    </device-transfer>
+</data-extraction-rules>

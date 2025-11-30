@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Material 3 Theme -->
+    <style name="Base.Theme.SGDH" parent="Theme.Material3.DayNight">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryContainer">@color/purple_200</item>
+        <item name="colorOnPrimaryContainer">@color/purple_700</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryContainer">@color/teal_200</item>
+        <item name="colorOnSecondaryContainer">@color/teal_700</item>
+        <item name="colorError">@color/red_400</item>
+        <item name="colorErrorContainer">@color/red_100</item>
+        <item name="colorOnErrorContainer">@color/red_700</item>
+    </style>
+
+    <style name="Theme.SGDH" parent="Base.Theme.SGDH" />
+</resources>

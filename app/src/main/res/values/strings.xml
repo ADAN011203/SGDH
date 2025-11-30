@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SGDH</string>
+    <string name="welcome">Bienvenido</string>
+    <!-- Auth -->
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="logout">Cerrar sesión</string>
+
+    <!-- Solicitudes -->
+    <string name="solicitudes">Solicitudes</string>
+    <string name="nueva_solicitud">Nueva Solicitud</string>
+    <string name="crear_solicitud">Crear Solicitud</string>
+    <string name="justificacion">Justificación</string>
+    <string name="productos">Productos</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="agregar_producto">Agregar Producto</string>
+
+    <!-- Estados -->
+    <string name="pendiente">Pendiente</string>
+    <string name="aprobada">Aprobada</string>
+    <string name="rechazada">Rechazada</string>
+    <string name="surtida">Surtida</string>
+
+    <!-- Mensajes -->
+    <string name="cargando">Cargando…</string>
+    <string name="error_generico">Ocurrió un error. Intenta nuevamente.</string>
+    <string name="sin_conexion">Sin conexión a internet</string>
+    <string name="no_hay_solicitudes">No hay solicitudes</string>
+    <string name="no_hay_productos">No hay productos</string>
+</resources>
