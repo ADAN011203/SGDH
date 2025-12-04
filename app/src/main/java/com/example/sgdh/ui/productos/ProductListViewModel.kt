@@ -2,23 +2,26 @@ package com.example.sgdh.ui.productos
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.sgdh.data.models.DotacionProducto
+import com.example.sgdh.data.models.Producto
 import com.example.sgdh.data.repository.ProductoRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class ProductListState(
     val isLoading: Boolean = false,
-    val productos: List<DotacionProducto> = emptyList(),
+    val productos: List<Producto> = emptyList(),
     val error: String? = null,
     val searchQuery: String = ""
 )
 
-class ProductListViewModel : ViewModel() {
-
-    private val repository = ProductoRepository()
+@HiltViewModel
+class ProductListViewModel @Inject constructor(
+    private val repository: ProductoRepository
+) : ViewModel() {
 
     private val _state = MutableStateFlow(ProductListState())
     val state: StateFlow<ProductListState> = _state.asStateFlow()

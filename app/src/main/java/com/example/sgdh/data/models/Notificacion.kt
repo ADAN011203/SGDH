@@ -10,27 +10,22 @@ data class Notificacion(
     val type: String,
 
     @SerializedName("data")
-    val data: Map<String, Any>,
+    val data: NotificacionData,
 
     @SerializedName("read_at")
     val readAt: String?,
 
     @SerializedName("created_at")
-    val createdAt: String,
-
-    @SerializedName("updated_at")
-    val updatedAt: String
+    val createdAt: String
 )
 
-data class NotificacionesResponse(
-    @SerializedName("data")
-    val data: List<Notificacion>,
+data class NotificacionData(
+    @SerializedName("title")
+    val title: String,
 
-    @SerializedName("meta")
-    val meta: NotificacionMeta
-)
+    @SerializedName("message")
+    val message: String,
 
-data class NotificacionMeta(
-    @SerializedName("unread_count")
-    val unreadCount: Int
+    @SerializedName("solicitud_id")
+    val solicitudId: Int?
 )

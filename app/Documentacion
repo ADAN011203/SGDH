@@ -1,0 +1,12 @@
+Descripción General
+Sistema móvil Android para la gestión de solicitudes de dotación de productos médicos en hospitales. Permite a los usuarios solicitar productos, realizar seguimiento de solicitudes y recibir notificaciones sobre el estado de las mismas.
+Arquitectura del Proyecto
+El proyecto sigue la arquitectura MVVM (Model-View-ViewModel) con Clean Architecture y utiliza las siguientes tecnologías:
+
+Lenguaje: Kotlin
+UI: Jetpack Compose / XML Layouts con ViewBinding
+Inyección de Dependencias: Hilt (Dagger)
+Networking: Retrofit + OkHttp
+Asincronía: Coroutines + Flow
+Navegación: Navigation Component
+Persistencia Local: SharedPreferences (tokens)

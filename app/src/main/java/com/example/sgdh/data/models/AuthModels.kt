@@ -2,7 +2,7 @@ package com.example.sgdh.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginRequest(
+/*data class LoginRequest(
     @SerializedName("email")
     val email: String,
 
@@ -19,8 +19,9 @@ data class GoogleLoginRequest(
 
     @SerializedName("device_name")
     val deviceName: String = "Android"
-)
+)*/
 
+/*
 data class AuthResponse(
     @SerializedName("token")
     val token: String,
@@ -33,4 +34,4 @@ data class AuthResponse(
 
     @SerializedName("user")
     val user: User
-)
+)*/

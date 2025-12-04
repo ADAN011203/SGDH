@@ -54,6 +54,10 @@ data class Producto(
     val nombre: String
         get() = "$clave - $descripcion"
 }
+/*data class ProductosResponse(
+    @SerializedName("data")
+    val data: List<Producto>
+)*/
 
 data class DotacionProducto(
     @SerializedName("id")

@@ -30,4 +30,45 @@
     <string name="sin_conexion">Sin conexión a internet</string>
     <string name="no_hay_solicitudes">No hay solicitudes</string>
     <string name="no_hay_productos">No hay productos</string>
+
+        <string name="login_title">Iniciar Sesión</string>
+        <string name="email_hint">Correo electrónico</string>
+        <string name="password_hint">Contraseña</string>
+        <string name="login_button">Iniciar Sesión</string>
+        <string name="google_signin">Continuar con Google</string>
+        <string name="help_text">Si no tienes acceso, contacta al administrador</string>
+
+        <!-- Solicitudes -->
+        <string name="solicitudes_title">Mis Solicitudes</string>
+        <string name="detalle_solicitud">Detalle de Solicitud</string>
+        <string name="guardar">Guardar</string>
+        <string name="cancelar">Cancelar</string>
+
+        <!-- Estados -->
+        <string name="estado_pendiente_jefe">Pendiente Jefe</string>
+        <string name="estado_pendiente_farmacia">Pendiente Farmacia</string>
+        <string name="estado_aprobada">Aprobada</string>
+        <string name="estado_rechazada">Rechazada</string>
+        <string name="estado_surtida">Surtida</string>
+
+        <!-- Mensajes -->
+        <string name="loading">Cargando...</string>
+        <string name="error_general">Ocurrió un error</string>
+        <string name="no_solicitudes">No hay solicitudes</string>
+        <string name="no_productos">No hay productos agregados</string>
+        <string name="reintentar">Reintentar</string>
+
+        <!-- Validaciones -->
+        <string name="email_required">El correo es requerido</string>
+        <string name="email_invalid">Correo inválido</string>
+        <string name="password_required">La contraseña es requerida</string>
+        <string name="password_min_length">Mínimo 6 caracteres</string>
+
+    <string name="solicitud_id_format">Solicitud id</string>
+    <string name="status_pending_jefe">Pendiente Jefe</string>
+    <string name="status_pending_farmacia">Pendiente Farmacia</string>
+    <string name="status_approved">Aprobado</string>
+    <string name="status_rejected">Rechazado</string>
+    <string name="status_delivered">Entregado</string>
+    <string name="action_login_to_solicitudes">action_login_to_solicitudes</string>
 </resources>

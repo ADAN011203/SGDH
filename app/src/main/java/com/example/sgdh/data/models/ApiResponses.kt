@@ -61,4 +61,6 @@ data class ErrorResponse(
 
     @SerializedName("errors")
     val errors: Map<String, List<String>>?
+
+
 )
