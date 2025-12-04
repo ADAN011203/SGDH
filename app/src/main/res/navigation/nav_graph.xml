@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.sgdh.ui.auth.LoginFragment"
+        android:label="Inicio de Sesión">
+        <action
+            android:id="@+id/action_loginFragment_to_solicitudListFragment"
+            app:destination="@id/solicitudListFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/solicitudListFragment"
+        android:name="com.example.sgdh.ui.solicitudes.list.SolicitudListFragment"
+        android:label="Mis Solicitudes">
+        <action
+            android:id="@+id/action_solicitudListFragment_to_solicitudDetailFragment"
+            app:destination="@id/solicitudDetailFragment"/>
+        <action
+            android:id="@+id/action_solicitudListFragment_to_solicitudCreateFragment"
+            app:destination="@id/solicitudCreateFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/solicitudDetailFragment"
+        android:name="com.example.sgdh.ui.solicitudes.detail.SolicitudDetailFragment"
+        android:label="Detalle de Solicitud">
+        <argument
+            android:name="solicitudId"
+            app:argType="integer"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/solicitudCreateFragment"
+        android:name="com.example.sgdh.ui.solicitudes.create.SolicitudCreateFragment"
+        android:label="Nueva Solicitud"/>
+
+</navigation>

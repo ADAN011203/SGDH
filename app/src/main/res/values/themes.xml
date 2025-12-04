@@ -11,6 +11,26 @@
         <item name="colorError">@color/red_400</item>
         <item name="colorErrorContainer">@color/red_100</item>
         <item name="colorOnErrorContainer">@color/red_700</item>
+        <!-- Primary brand color -->
+       <item name="colorPrimaryVariant">@color/brand_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color -->
+        <item name="colorSecondaryVariant">@color/accent_blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Background -->
+        <item name="android:colorBackground">@color/bg_light</item>
+
+        <!-- Surface -->
+        <item name="colorSurface">@color/white</item>
+
+        <!-- Error -->
+       <item name="colorOnError">@color/white</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/brand_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.SGDH" parent="Base.Theme.SGDH" />

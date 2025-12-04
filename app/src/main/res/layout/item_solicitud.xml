@@ -1,46 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_marginBottom="12dp"
+    app:cardElevation="2dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvSolicitudId"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_solicitud_id"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+            android:text="Solicitud #123"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/accent_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_estatus"/>
 
         <TextView
-            android:id="@+id/tvEstado"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_estatus"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+            android:text="Pendiente"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:background="@color/warning"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/tvFecha"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_fecha"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+            android:text="01/12/2024 10:30"
+            android:textSize="14sp"
+            android:textColor="@color/neutral_500"
+            android:drawablePadding="4dp"
+            app:drawableStartCompat="@android:drawable/ic_menu_recent_history"
+            app:drawableTint="@color/neutral_500"
+            app:layout_constraintTop_toBottomOf="@id/tv_solicitud_id"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/tvJustificacion"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_justificacion"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:text="Justificación de la solicitud..."
+            android:textSize="14sp"
+            android:textColor="@color/neutral_700"
             android:maxLines="2"
-            android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/tv_fecha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

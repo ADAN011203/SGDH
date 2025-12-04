@@ -4,67 +4,57 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sgdh.data.models.Solicitud
 import com.example.sgdh.data.repository.SolicitudRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-data class SolicitudDetailState(
+data class SolicitudDetailUiState(
     val isLoading: Boolean = false,
     val solicitud: Solicitud? = null,
     val error: String? = null
 )
 
-class SolicitudDetailViewModel : ViewModel() {
+@HiltViewModel
+class SolicitudDetailViewModel @Inject constructor(
+    private val solicitudRepository: SolicitudRepository
+) : ViewModel() {
 
-    private val repository = SolicitudRepository()
+    private val _uiState = MutableStateFlow(SolicitudDetailUiState())
+    val uiState: StateFlow<SolicitudDetailUiState> = _uiState.asStateFlow()
 
-    private val _state = MutableStateFlow(SolicitudDetailState())
-    val state: StateFlow<SolicitudDetailState> = _state.asStateFlow()
-
-    fun getSolicitud(id: Int) {
+    fun loadSolicitudDetail(solicitudId: Int) {
         viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true, error = null)
+            _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
-            repository.getSolicitud(id).fold(
-                onSuccess = { solicitud ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        solicitud = solicitud,
-                        error = null
-                    )
-                },
-                onFailure = { error ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        error = error.message ?: "Error al cargar solicitud"
-                    )
-                }
-            )
-        }
-    }
+            try {
+                val result = solicitudRepository.getSolicitudById(solicitudId)
 
-    fun updateStatus(estatus: String, motivoRechazo: String? = null) {
-        val solicitudId = _state.value.solicitud?.id ?: return
-
-        viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true, error = null)
-
-            repository.updateStatus(solicitudId, estatus, motivoRechazo).fold(
-                onSuccess = { solicitud ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        solicitud = solicitud,
-                        error = null
-                    )
-                },
-                onFailure = { error ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        error = error.message ?: "Error al actualizar estatus"
-                    )
-                }
-            )
+                result.fold(
+                    onSuccess = { solicitud ->
+                        _uiState.value = SolicitudDetailUiState(
+                            isLoading = false,
+                            solicitud = solicitud,
+                            error = null
+                        )
+                    },
+                    onFailure = { exception ->
+                        _uiState.value = SolicitudDetailUiState(
+                            isLoading = false,
+                            solicitud = null,
+                            error = exception.message ?: "Error al cargar el detalle"
+                        )
+                    }
+                )
+            } catch (e: Exception) {
+                _uiState.value = SolicitudDetailUiState(
+                    isLoading = false,
+                    solicitud = null,
+                    error = e.message ?: "Error de conexión"
+                )
+            }
         }
     }
 }

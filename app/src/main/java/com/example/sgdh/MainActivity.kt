@@ -1,47 +1,43 @@
-package com.example.sgdh.ui
+package com.example.sgdh
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
-import com.example.sgdh.data.local.PreferencesManager
-import com.example.sgdh.ui.common.navigation.NavGraph
-import com.example.sgdh.ui.common.navigation.Screens
-import com.example.sgdh.ui.theme.SgdhTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.sgdh.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-// REMOVER: @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-    private lateinit var preferencesManager: PreferencesManager
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        preferencesManager = PreferencesManager(this)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        setContent {
-            SgdhTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val navController = rememberNavController()
-                    val startDestination = if (preferencesManager.isLoggedIn()) {
-                        Screens.Main
-                    } else {
-                        Screens.Login
-                    }
+        setupNavigation()
+    }
 
-                    NavGraph(
-                        navController = navController,
-                        startDestination = startDestination
-                    )
-                }
-            }
-        }
+    private fun setupNavigation() {
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+        // Configurar ActionBar con Navigation
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.loginFragment, R.id.solicitudListFragment)
+        )
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

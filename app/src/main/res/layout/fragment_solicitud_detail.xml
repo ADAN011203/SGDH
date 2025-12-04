@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.solicitudes.detail.SolicitudDetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="100dp"
+                tools:visibility="visible" />
+
+            <!-- Información General Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <!-- ID Solicitud -->
+                    <TextView
+                        android:id="@+id/textViewSolicitudId"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/chipEstatus"
+                        tools:text="Solicitud #123" />
+
+                    <!-- Chip Estado -->
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipEstatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipCornerRadius="16dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="Aprobada" />
+
+                    <!-- Fecha -->
+                    <TextView
+                        android:id="@+id/labelFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha:"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_700"
+                        app:layout_constraintTop_toBottomOf="@id/textViewSolicitudId"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/textViewFecha"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/labelFecha"
+                        app:layout_constraintStart_toEndOf="@id/labelFecha"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="8dp"
+                        tools:text="02/12/2024 14:30" />
+
+                    <!-- Área -->
+                    <TextView
+                        android:id="@+id/labelArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Área:"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_700"
+                        app:layout_constraintTop_toBottomOf="@id/labelFecha"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/textViewArea"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/labelArea"
+                        app:layout_constraintStart_toEndOf="@id/labelArea"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="8dp"
+                        tools:text="Urgencias" />
+
+                    <!-- Solicitante -->
+                    <TextView
+                        android:id="@+id/labelSolicitante"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Solicitante:"
+                        android:textStyle="bold"
+                        android:textColor="@color/slate_700"
+                        app:layout_constraintTop_toBottomOf="@id/labelArea"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/textViewSolicitante"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/labelSolicitante"
+                        app:layout_constraintStart_toEndOf="@id/labelSolicitante"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginStart="8dp"
+                        tools:text="Juan Pérez" />
+
+                    <!-- Divider -->
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="@color/slate_700"
+                        app:layout_constraintTop_toBottomOf="@id/labelSolicitante"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="16dp" />
+
+                    <!-- Justificación -->
+                    <TextView
+                        android:id="@+id/labelJustificacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Justificación"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/divider"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/textViewJustificacion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/slate_700"
+                        app:layout_constraintTop_toBottomOf="@id/labelJustificacion"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        tools:text="Necesitamos material adicional debido al incremento de pacientes en el turno nocturno." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Título Productos -->
+            <TextView
+                android:id="@+id/textViewProductosTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Productos Solicitados"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/cardInfo"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!-- RecyclerView Productos -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewProductos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/textViewProductosTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_producto_detalle" />
+
+            <!-- Empty State -->
+            <TextView
+                android:id="@+id/textViewEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No hay productos"
+                android:textColor="@color/slate_700"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/textViewProductosTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

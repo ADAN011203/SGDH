@@ -8,6 +8,8 @@
     <color name="red_100">#FFFFCDD2</color>
     <color name="red_400">#FFFF1744</color>
     <color name="red_700">#FFD00036</color>
+    <color name="slate_700">#334155</color>
+    <color name="ic_launcher_background">#FF6750A4</color> <!-- Color de ejemplo -->
 
     <!-- Additional Material 3 colors -->
 
@@ -77,4 +79,28 @@
     <color name="estado_rechazada">#FFF44336</color>
     <color name="estado_surtida">#FF2196F3</color>
     <color name="red">#FF0000</color>
+
+    <!-- Paleta de marca -->
+    <color name="brand">#009900</color>
+    <color name="brand_dark">#006600</color>
+    <color name="accent_blue">#0033cc</color>
+
+    <!-- Estados -->
+
+    <!-- Neutrales -->
+    <color name="neutral_50">#f8fafc</color>
+    <color name="neutral_100">#f1f5f9</color>
+    <color name="neutral_200">#e2e8f0</color>
+    <color name="neutral_300">#cbd5e1</color>
+    <color name="neutral_400">#94a3b8</color>
+    <color name="neutral_500">#64748b</color>
+    <color name="neutral_600">#475569</color>
+    <color name="neutral_700">#334155</color>
+    <color name="neutral_800">#1e293b</color>
+    <color name="neutral_900">#0f172a</color>
+
+    <!-- Fondos -->
+    <color name="bg_light">#ffffff</color>
+    <color name="bg_dark">#0b1220</color>
+
 </resources>

@@ -1,8 +1,22 @@
 package com.example.sgdh.data.models
 
 import com.google.gson.annotations.SerializedName
-/*
 
+// ============ Auth Requests ============
+data class LoginRequest(
+    @SerializedName("email")
+    val email: String,
+
+    @SerializedName("password")
+    val password: String
+)
+
+data class GoogleLoginRequest(
+    @SerializedName("token")
+    val token: String
+)
+
+// ============ Solicitud Requests ============
 data class CreateSolicitudRequest(
     @SerializedName("justificacion")
     val justificacion: String,
@@ -23,6 +37,6 @@ data class UpdateStatusRequest(
     @SerializedName("estatus")
     val estatus: String,
 
-    @SerializedName("motivo_rechazo")
-    val motivoRechazo: String? = null
-)*/
+    @SerializedName("comentario")
+    val comentario: String? = null
+)

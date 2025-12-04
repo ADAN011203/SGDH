@@ -4,47 +4,65 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sgdh.data.models.Solicitud
 import com.example.sgdh.data.repository.SolicitudRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-data class SolicitudListState(
+data class SolicitudListUiState(
     val isLoading: Boolean = false,
     val solicitudes: List<Solicitud> = emptyList(),
     val error: String? = null
 )
 
-class SolicitudListViewModel : ViewModel() {
+@HiltViewModel
+class SolicitudListViewModel @Inject constructor(
+    private val solicitudRepository: SolicitudRepository
+) : ViewModel() {
 
-    private val repository = SolicitudRepository()
+    private val _uiState = MutableStateFlow(SolicitudListUiState())
+    val uiState: StateFlow<SolicitudListUiState> = _uiState.asStateFlow()
 
-    private val _state = MutableStateFlow(SolicitudListState())
-    val state: StateFlow<SolicitudListState> = _state.asStateFlow()
+    init {
+        loadSolicitudes()
+    }
 
-    fun getSolicitudes(estatus: String? = null) {
+    fun loadSolicitudes() {
         viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true, error = null)
+            _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
-            repository.getSolicitudes(estatus = estatus).fold(
-                onSuccess = { solicitudes ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        solicitudes = solicitudes,
-                        error = null
-                    )
-                },
-                onFailure = { error ->
-                    _state.value = _state.value.copy(
-                        isLoading = false,
-                        error = error.message ?: "Error desconocido"
-                    )
-                }
-            )
+            try {
+                val result = solicitudRepository.getSolicitudes()
+
+                result.fold(
+                    onSuccess = { solicitudes ->
+                        _uiState.value = SolicitudListUiState(
+                            isLoading = false,
+                            solicitudes = solicitudes,
+                            error = null
+                        )
+                    },
+                    onFailure = { exception ->
+                        _uiState.value = SolicitudListUiState(
+                            isLoading = false,
+                            solicitudes = emptyList(),
+                            error = exception.message ?: "Error al cargar solicitudes"
+                        )
+                    }
+                )
+            } catch (e: Exception) {
+                _uiState.value = SolicitudListUiState(
+                    isLoading = false,
+                    solicitudes = emptyList(),
+                    error = e.message ?: "Error de conexión"
+                )
+            }
         }
     }
 
-    fun refresh() {
-        getSolicitudes()
+    fun refreshSolicitudes() {
+        loadSolicitudes()
     }
 }

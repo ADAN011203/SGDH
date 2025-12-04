@@ -1,12 +1,22 @@
 package com.example.sgdh.data.remote
 
+import com.example.sgdh.data.models.AuthResponse
+import com.example.sgdh.data.models.CreateSolicitudRequest
+import com.example.sgdh.data.models.GoogleLoginRequest
+import com.example.sgdh.data.models.LoginRequest
+import com.example.sgdh.data.models.NotificacionesResponse
+import com.example.sgdh.data.models.ProductosResponse
+import com.example.sgdh.data.models.SolicitudResponse
+import com.example.sgdh.data.models.SolicitudesResponse
+import com.example.sgdh.data.models.UpdateStatusRequest
 import com.example.sgdh.data.models.*
 import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
 
-    // Auth
+    // ============ Autenticación ============
+
     @POST("auth/token")
     suspend fun login(@Body request: LoginRequest): Response<AuthResponse>
 
@@ -16,39 +26,77 @@ interface ApiService {
     @DELETE("auth/token")
     suspend fun logout(): Response<Unit>
 
-    // Solicitudes
-    @GET("solicitudes")
-    suspend fun getSolicitudes(
-        @Query("per_page") perPage: Int = 15,
-        @Query("estatus") estatus: String? = null
-    ): Response<PaginatedResponse<Solicitud>>
+    // ============ Productos ============
 
-    @GET("solicitudes/{id}")
-    suspend fun getSolicitud(@Path("id") id: Int): Response<ApiResponse<Solicitud>>
+    @GET("productos")
+    suspend fun getProductos(
+        @Query("search") search: String? = null,
+        @Query("cuadro_basico") cuadroBasico: Boolean? = null
+    ): Response<ProductosResponse>
+
+    // ============ Solicitudes ============
+
+    @GET("solicitudes")
+    suspend fun getSolicitudes(): Response<SolicitudesResponse>
 
     @POST("solicitudes")
-    suspend fun createSolicitud(@Body request: CreateSolicitudRequest): Response<ApiResponse<Solicitud>>
+    suspend fun createSolicitud(@Body request: CreateSolicitudRequest): Response<SolicitudResponse>
+
+    @GET("solicitudes/{id}")
+    suspend fun getSolicitudById(@Path("id") id: Int): Response<SolicitudResponse>
 
     @PATCH("solicitudes/{id}/estatus")
     suspend fun updateSolicitudStatus(
         @Path("id") id: Int,
         @Body request: UpdateStatusRequest
-    ): Response<ApiResponse<Solicitud>>
+    ): Response<SolicitudResponse>
 
-    // Productos
-    @GET("productos")
-    suspend fun getProductos(
-        @Query("per_page") perPage: Int = 50,
-        @Query("search") search: String? = null
-    ): Response<PaginatedResponse<DotacionProducto>>
+    // ============ Notificaciones ============
 
-    // Notificaciones
     @GET("notifications")
-    suspend fun getNotifications(
-        @Query("limit") limit: Int = 25,
-        @Query("unread") unread: Boolean? = null
-    ): Response<NotificacionesResponse>
+    suspend fun getNotifications(): Response<NotificacionesResponse>
 
     @PATCH("notifications/{id}")
-    suspend fun markNotificationAsRead(@Path("id") id: String): Response<ApiResponse<Notificacion>>
+    suspend fun markNotificationAsRead(@Path("id") id: String): Response<Unit>
 }
+// Agrega al final del archivo que ya tienes:
+
+// DotacionProducto (para la creación de solicitudes)
+data class DotacionProducto(
+    val producto_id: Int,
+    val cantidad: Int
+)
+
+// Para respuestas paginadas
+data class PaginatedResponse<T>(
+    val data: T,
+    val meta: Meta? = null
+)
+
+data class Meta(
+    val total: Int,
+    val unread: Int? = null
+)
+
+// Notificaciones
+data class NotificacionesResponse(
+    val data: List<Notificacion>,
+    val meta: Meta?
+)
+
+data class Notificacion(
+    val id: Int,
+    val title: String,
+    val message: String,
+    val read: Boolean,
+    val created_at: String
+)
+
+// Para respuestas de listas
+data class SolicitudesResponse(
+    val solicitudes: List<Solicitud>
+)
+
+data class ProductosResponse(
+    val productos: List<Producto>
+)
